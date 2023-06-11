@@ -29,12 +29,12 @@ class SwitchData
             );
 
             $headers = array();
-            $headers[] = new SoapHeader('auth', 'Login', $_ENV('SWITCH_USERNAME'));
-            $headers[] = new SoapHeader('auth', 'Password', $_ENV('SWITCH_PASSWORD'));
+            $headers[] = new SoapHeader('auth', 'Login', $_ENV['SWITCH_USERNAME']);
+            $headers[] = new SoapHeader('auth', 'Password', $_ENV['SWITCH_PASSWORD']);
 
 
 
-            $client = new SoapClient($_ENV('SWITCH_URL'), $options);
+            $client = new SoapClient($_ENV['SWITCH_URL'], $options);
             $client->__setSoapHeaders($headers);
             return $client;
 

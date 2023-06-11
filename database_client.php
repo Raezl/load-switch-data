@@ -11,10 +11,10 @@ class DatabaseClient
 
     public function __construct()
     {
-        $this->database_name = $_ENV('DATABASE_NAME');
-        $this->database_host = $_ENV('DATABASE_HOST');
-        $this->database_username = $_ENV('DATABASE_USERNAME');
-        $this->database_password = $_ENV('DATABASE_PASSWORD');
+        $this->database_name = $_ENV['DATABASE_NAME'];
+        $this->database_host = $_ENV['DATABASE_HOST'];
+        $this->database_username = $_ENV['DATABASE_USERNAME'];
+        $this->database_password = $_ENV['DATABASE_PASSWORD'];
         $this->connection = $this->connect();
     }
 

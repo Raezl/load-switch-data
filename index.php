@@ -16,10 +16,10 @@ $dotenv->load();
 
 
 //Switch tables
-$active_calls_table = $_ENV('SWITCH_TBL_CALLS');
-$cps_table = $_ENV('SWITCH_TBL_CPS');
-$rps_table = $_ENV('SWITCH_TBL_RPS');
-$oodrps_table = $_ENV('SWITCH_TBL_OODRPS');
+$active_calls_table = $_ENV['SWITCH_TBL_CALLS'];
+$cps_table = $_ENV['SWITCH_TBL_CPS'];
+$rps_table = $_ENV['SWITCH_TBL_RPS'];
+$oodrps_table = $_ENV['SWITCH_TBL_OODRPS'];
 
 $switch_data = new SwitchData();
 
