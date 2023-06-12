@@ -65,6 +65,30 @@ class DatabaseClient
         }
     }
 
+    //add statistics to gateway_stats table
+    public function add_gateway_stats($gateway, $count, $direction)
+    {
+
+        $gateway_stats = pg_query($this->connection, "INSERT INTO gateway_stats (stat_date, gateway, call_count, direction) VALUES (' " . date('Y-m-d H:i:s') . "', '" . $gateway . "', " . $count . ",'" . $direction . "');");
+
+        if (!$gateway_stats) {
+            $error = pg_last_error($this->connection);
+            Log::error('Unable to add gateway statistics. Details: ' . $error);
+        }
+    }
+
+    //add statistics to gateway_stats table
+    public function add_dest_usage($account_name, $count, $iso2)
+    {
+
+        $dest_usage = pg_query($this->connection, "INSERT INTO dest_usage (customer, iso2, call_count) VALUES ('" . $account_name . "', '" . $iso2 . "', " . $count . ");");
+
+        if (!$dest_usage) {
+            $error = pg_last_error($this->connection);
+            Log::error('Unable to add destination usage. Details: ' . $error);
+        }
+    }
+    
     //add CPS values to cps_load_stats table
     public function add_cps($values)
     {

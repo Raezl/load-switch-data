@@ -112,7 +112,16 @@ else {
 }
 
 
-//check if call count exceeded per account
+//add statistics to the database 
+foreach ($source_gw_count as $gateway => $count) {
+	$db_client->add_gateway_stats($gateway, $count, 'src');
+}
+
+foreach ($termination_gw_count as $gateway => $count) {
+	$db_client->add_gateway_stats($gateway, $count, 'dst');
+}
+
+
 foreach ($calls_per_account_count as $key => $call_count) {
 
 	/**
@@ -123,7 +132,10 @@ foreach ($calls_per_account_count as $key => $call_count) {
 	$keys = explode(' ', $key);
 	$call_limit = $db_client->get_call_limit($keys[0], $keys[1]);
 
-	//compare with the limit specified on the database
+	//add dest usage to database
+	$db_client->add_dest_usage($keys[0], $call_count, $keys[1]);
+
+	//check if call count exceeded per account compared to the limit specified on the database
 	if ($call_count > $call_limit) {
 		$db_client->add_fraud($keys[0], $keys[1], $call_count);
 	}
